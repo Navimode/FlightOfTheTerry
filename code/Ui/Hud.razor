@@ -1,0 +1,38 @@
+@using Sandbox;
+@using Sandbox.UI;
+@using JetpackGame.Player;
+
+@namespace JetpackGame.UI
+@inherits RootPanel
+@attribute [StyleSheet]
+
+<root>
+    <ChatBox/>
+    <VoiceList/>
+    <DamageIndicator/>
+
+    <div class="main">
+        <div class="speedo">
+            <label @ref=Label_Speed />
+        </div>
+    </div>
+</root>
+
+@code
+{
+    //<InventoryBar/>
+    //<PickupFeed/>
+    //<Crosshair/>
+    //<KillFeed/>
+    //<Scoreboard/>
+
+    public Label Label_Speed;
+
+    public override void Tick()
+    {
+        if (Game.LocalPawn is not JetpackPlayer player) return;
+
+        Label_Speed.Text = $"{player.Velocity.Length.CeilToInt()}";
+
+    }
+}
